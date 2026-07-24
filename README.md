@@ -24,3 +24,27 @@ El objetivo principal de este mes es adquirir las habilidades necesarias para co
 
 ---
 _Proceso de aprendizaje guiado con auditorías de código diarias para asegurar la calidad del software._
+
+---
+
+# 🐍 Python - Mes 2: Desarrollo Backend con FastAPI & Pydantic
+
+
+## 💡 Conceptos Clave Aprendidos en el Día 32
+1. **Path Parameters (Parámetros de Ruta):**
+   * Utilizados para identificar recursos únicos en la URL (ejemplo: `/empleados/3`).
+   * Validación automática de tipos mediante type hints (`empleado_id: int`). Si el cliente envía un tipo de dato incorrecto, FastAPI retorna un error 422 de forma automática.
+2. **Query Parameters (Parámetros de Consulta):**
+   * Parámetros opcionales al final de la URL precedidos por `?` para filtrar o buscar (ejemplo: `/empleados?cargo=Backend`).
+3. **Depuración y Lógica de Bucles en Python:**
+   * Importancia de la indentación adecuada en los retornos dentro de un bucle `for`. Evitar retornos prematuros dentro del scope del bloque para garantizar el recorrido completo de la estructura de datos.
+
+## 🛠️ Tecnologías y Herramientas utilizadas
+* **Lenguaje:** Python 3
+* **Framework:** FastAPI
+* **Servidor ASGI:** Uvicorn
+* **Editor de Código:** Visual Studio Code
+* **Control de Versiones:** Git & GitHub
+
+---
+_Proceso de aprendizaje guiado con auditorías de código diarias para asegurar la calidad del software._
