@@ -1,0 +1,12 @@
+plaintext
+
+# Archivos temporales de Python
+__pycache__/
+*.pyc
+
+# Archivos del sistema Mac
+.DS_Store
+
+# Entornos virtuales
+.venv/
+venv/
