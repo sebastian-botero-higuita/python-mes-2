@@ -48,3 +48,24 @@ _Proceso de aprendizaje guiado con auditorías de código diarias para asegurar 
 
 ---
 _Proceso de aprendizaje guiado con auditorías de código diarias para asegurar la calidad del software._
+
+---
+
+## 💡 Conceptos Clave Aprendidos en el Día 33
+1. **Método HTTP POST:**
+   * Utilizado para enviar información al servidor y crear nuevos recursos.
+   * Transmisión de datos en el cuerpo de la solicitud (*Request Body*) utilizando el formato `application/json`.
+2. **Estructura y Validación de JSON:**
+   * Sensibilidad de la sintaxis JSON (comillas dobles, llaves y comas). FastAPI retorna automáticamente un código **422 Unprocessable Content** en caso de JSON mal formado.
+3. **Manejo de Estado en Memoria:**
+   * Modificación de estructuras de datos persistidas durante el ciclo de vida de la aplicación mediante `.append()`.
+
+## 🛠️ Tecnologías y Herramientas utilizadas
+* **Lenguaje:** Python 3
+* **Framework:** FastAPI
+* **Servidor ASGI:** Uvicorn
+* **Editor de Código:** Visual Studio Code
+* **Control de Versiones:** Git & GitHub
+
+---
+_Proceso de aprendizaje guiado con auditorías de código diarias para asegurar la calidad del software._
