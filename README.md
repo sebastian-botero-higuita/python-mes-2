@@ -67,5 +67,26 @@ _Proceso de aprendizaje guiado con auditorías de código diarias para asegurar 
 * **Editor de Código:** Visual Studio Code
 * **Control de Versiones:** Git & GitHub
 
+_Proceso de aprendizaje guiado con auditorías de código diarias para asegurar la calidad del software._
+
+---
+
+## 💡 Conceptos Clave Aprendidos en el Día 34
+1. **Pydantic v2 Schemas (`BaseModel`):**
+   * Definición de contratos de entrada tipados (`id: int`, `nombre: str`, `cargo: str`) que protegen la API contra datos corruptos.
+   * Generación automática de esquemas en la documentación Swagger UI / OpenAPI.
+2. **Método `.model_dump()`:**
+   * Reemplazo moderno y vigente de `.dict()` (deprecado en Pydantic v1) para convertir modelos de Pydantic a diccionarios nativos de Python.
+3. **Manejo de Errores 422 (Unprocessable Content):**
+   * Intercepción de datos inválidos en la capa de transporte HTTP antes de ejecutar la lógica de negocio.
+
+## 🛠️ Tecnologías y Herramientas utilizadas
+* **Lenguaje:** Python 3
+* **Framework:** FastAPI
+* **Validación:** Pydantic v2
+* **Servidor ASGI:** Uvicorn
+* **Editor de Código:** Visual Studio Code
+* **Control de Versiones:** Git & GitHub
+
 ---
 _Proceso de aprendizaje guiado con auditorías de código diarias para asegurar la calidad del software._
