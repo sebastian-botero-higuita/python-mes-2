@@ -90,3 +90,22 @@ _Proceso de aprendizaje guiado con auditorías de código diarias para asegurar 
 
 ---
 _Proceso de aprendizaje guiado con auditorías de código diarias para asegurar la calidad del software._
+
+---
+
+## 💡 Conceptos Clave Aprendidos en el Día 35
+1. **Códigos HTTP Semánticos:**
+   * Configuración de `status.HTTP_201_CREATED` directamente en el decorador del endpoint para confirmar la creación limpia de un recurso.
+2. **Excepciones de Control (`HTTPException`):**
+   * Interrupción explícita de la petición con `raise HTTPException` cuando un recurso solicitado no existe.
+   * Modificación real de las cabeceras HTTP del servidor enviando un código **404 Not Found** en lugar de retornar un JSON con un mensaje manual.
+
+## 🛠️ Tecnologías y Herramientas utilizadas
+* **Lenguaje:** Python 3
+* **Framework:** FastAPI (`HTTPException`, `status`)
+* **Validación:** Pydantic v2
+* **Servidor ASGI:** Uvicorn
+* **Control de Versiones:** Git & GitHub
+
+---
+_Proceso de aprendizaje guiado con auditorías de código diarias para asegurar la calidad del software._

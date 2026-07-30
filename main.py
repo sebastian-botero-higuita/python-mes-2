@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, status
 from pydantic import BaseModel
 
 # Instancia principal de la aplicacion 
@@ -39,21 +39,24 @@ def obtener_empleados(cargo: str | None = None):
         return {"total": len(filtrados), "empleados": filtrados}
     return {"total": len(EMPLEADOS), "empleados": EMPLEADOS}
 
-#4 Path Parameter: Obtener un empleado por su ID (/empleados/1)
+#4 Manejo sematico de Errores: HTTP 404 Not Found
 @app.get("/empleados/{empleado_id}")
 def obtener_empleado_por_id(empleado_id: int):
     """FastAPI valida automaticamente que 'empleado_id' sea un entero (int)."""
     for emp in EMPLEADOS:
         if emp["id"] == empleado_id:
             return {"empleado": emp}
-    return {"error": f"Empleado con ID {empleado_id} no fue encontrado"}
 
+    # Lanzamos una excepcion HTTP nativa de FastAPI
+    raise HTTPException(
+        status_code=status.HTTP_404_NOT_FOUND,
+        detail=f"Empleado con ID {empleado_id} no fue encontrado",
+    )
 
+# Respuestas HTTP Sematica: 201 Created al crear un recurso 
 # 5. Metodo POST: Crear un nuevo empleado recibiendo datos en el Request Body
-@app.post("/empleados")
+@app.post("/empleados", status_code=status.HTTP_201_CREATED)
 def crear_empleado(nuevo_empleado: Empleado):
-    """ Recibe un JSON validado por Pydantic.
-     .model_dump() convierte el objeto Pydantic en un diccionario de Python """
     empleado_dict = nuevo_empleado.model_dump()
     EMPLEADOS.append(empleado_dict)
     return {
