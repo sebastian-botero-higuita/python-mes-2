@@ -12,6 +12,11 @@ class EmpleadoCrear(BaseModel):
     cargo: str
     salario: float # Dato privado que NO debe exponerse en la salida 
 
+class EmpleadoActualizar(BaseModel):
+    nombre: str 
+    cargo: str
+    salario: float
+
 # 3. Esquema de Salida (Filtro publico de respuesta)
 class EmpleadoRespuesta(BaseModel):
     id: int
@@ -64,10 +69,32 @@ def obtener_empleado_por_id(empleado_id: int):
 # Respuestas HTTP Sematica: 201 Created al crear un recurso 
 # 5. Metodo POST: Crear un nuevo empleado recibiendo datos en el Request Body
 # Aplicamos response_model en el POST
+
 @app.post("/empleados", status_code=status.HTTP_201_CREATED, response_model=EmpleadoRespuesta)
 def crear_empleado(nuevo_empleado: EmpleadoCrear):
     empleado_dict = nuevo_empleado.model_dump()
     EMPLEADOS.append(empleado_dict)
+
  # Retomamos el diccionario completo (que SI tiene salario),
  # pero FastAPI lo filtrara usando EmpleadoRespuesta.
     return empleado_dict
+
+# Actualizacion completa de un recurso mediante el metodo PUT
+@app.put("/empleados/{empleado_id}", response_model=EmpleadoRespuesta)
+def actualizar_empleado(empleado_id: int, datos_actualizados: EmpleadoActualizar):
+
+    """Recibe un ID por URL y los nuevos datos en el Body.
+        Si el empleado exist, actualiza sus campos y retorna el objeto filtrado por response_model."""
+
+    for emp in EMPLEADOS:
+      if emp["id"] == empleado_id:
+        datos_dict = datos_actualizados.model_dump()
+        emp["nombre"] = datos_dict["nombre"]
+        emp["cargo"] = datos_dict["cargo"]
+        emp["salario"] = datos_dict["salario"]
+        return emp
+
+    raise HTTPException(
+        status_code=status.HTTP_404_NOT_FOUND,
+        detail=f"No se puede actualizar. Empleado con ID {empleado_id} no fue encontrado",
+)

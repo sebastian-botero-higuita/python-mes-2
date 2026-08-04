@@ -127,3 +127,24 @@ _Proceso de aprendizaje guiado con auditorías de código diarias para asegurar 
 
 ---
 _Proceso de aprendizaje guiado con auditorías de código diarias para asegurar la calidad del software._
+
+## 💡 Conceptos Clave Aprendidos en el Día 37
+1. **Método HTTP `PUT`:**
+   * Utilizado para reemplazar/actualizar por completo un recurso existente en el servidor.
+   * El identificador del recurso se envía en la URL (Path Parameter), permitiendo que el cuerpo de la petición (Request Body) solo contenga los datos a modificar.
+2. **Arquitectura de DTOs Dinámica:**
+   * Creación de esquemas específicos para cada operación (`EmpleadoCrear` con ID, `EmpleadoActualizar` sin ID).
+   * Reutilización del esquema de salida `EmpleadoRespuesta` para mantener la privacidad de los datos sensibles de forma consistente en todos los endpoints.
+3. **`PUT` vs `PATCH` (Estándares REST):**
+   * **PUT:** Requiere enviar el objeto completo para reemplazar el existente.
+   * **PATCH:** Se utiliza para aplicar modificaciones parciales (ej. cambiar solo un campo sin enviar el resto).
+
+## 🛠️ Tecnologías y Herramientas utilizadas
+* **Lenguaje:** Python 3
+* **Framework:** FastAPI (`HTTPException`, `response_model`)
+* **Validación:** Pydantic v2
+* **Servidor ASGI:** Uvicorn
+* **Control de Versiones:** Git & GitHub
+
+---
+_Proceso de aprendizaje guiado con auditorías de código diarias para asegurar la calidad del software._
