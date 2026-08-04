@@ -109,3 +109,21 @@ _Proceso de aprendizaje guiado con auditorías de código diarias para asegurar 
 
 ---
 _Proceso de aprendizaje guiado con auditorías de código diarias para asegurar la calidad del software._
+
+## 💡 Conceptos Clave Aprendidos en el Día 36
+1. **Modelos de Respuesta (`response_model`):**
+   * Filtrado automático de campos confidenciales o internos (como `salario`) antes de enviar la respuesta JSON al cliente.
+   * Uso de tipos compuestos como `response_model=list[EmpleadoRespuesta]` para colecciones.
+2. **Patrón DTO (Data Transfer Objects):**
+   * Separación clara entre el modelo de entrada de datos (`EmpleadoCrear`) y el modelo público de salida (`EmpleadoRespuesta`).
+   * Protección de la capa de transporte sin alterar la estructura de almacenamiento interno.
+
+## 🛠️ Tecnologías y Herramientas utilizadas
+* **Lenguaje:** Python 3
+* **Framework:** FastAPI (`response_model`)
+* **Validación:** Pydantic v2
+* **Servidor ASGI:** Uvicorn
+* **Control de Versiones:** Git & GitHub
+
+---
+_Proceso de aprendizaje guiado con auditorías de código diarias para asegurar la calidad del software._
