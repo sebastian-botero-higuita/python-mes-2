@@ -148,3 +148,22 @@ _Proceso de aprendizaje guiado con auditorías de código diarias para asegurar 
 
 ---
 _Proceso de aprendizaje guiado con auditorías de código diarias para asegurar la calidad del software._
+
+## 💡 Conceptos Clave Aprendidos en el Día 38
+1. **Método HTTP `DELETE`:**
+   * Remoción de recursos específicos utilizando su ID vía *Path Parameter*.
+   * Manejo de respuestas de éxito (`200 OK` con payload de confirmación vs. `204 No Content`).
+2. **Manipulación Segura de Listas en Python:**
+   * Uso de `enumerate()` para obtener el índice exacto durante la iteración y remover elementos mediante `.pop(index)`.
+3. **Consistencia de Excepciones:**
+   * Retorno de `404 Not Found` mediante `HTTPException` al intentar eliminar un recurso inexistente.
+
+## 🛠️ Tecnologías y Herramientas utilizadas
+* **Lenguaje:** Python 3
+* **Framework:** FastAPI (`HTTPException`, `status`)
+* **Validación:** Pydantic v2
+* **Servidor ASGI:** Uvicorn
+* **Control de Versiones:** Git & GitHub
+
+---
+_Proceso de aprendizaje guiado con auditorías de código diarias para asegurar la calidad del software._

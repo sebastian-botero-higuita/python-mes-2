@@ -98,3 +98,20 @@ def actualizar_empleado(empleado_id: int, datos_actualizados: EmpleadoActualizar
         status_code=status.HTTP_404_NOT_FOUND,
         detail=f"No se puede actualizar. Empleado con ID {empleado_id} no fue encontrado",
 )
+
+# Eliminacion de recursos mediante el metodo DELETE
+@app.delete("/empleados/{empleado_id}")
+def eliminar_empleado(empleado_id: int):
+    """Busca un empleado por ID en la lista.
+        si existe, lo remueve mediante pop() y retorna una confirmacion.
+        si no existe, lanza una excepcion HTTP 404."""
+    for index, emp in enumerate(EMPLEADOS):
+        if emp["id"] == empleado_id:
+            empleado_eliminado = EMPLEADOS.pop(index)
+            return { "mensaje": f"Empleado con ID {empleado_id} eliminado con exito",
+                   "empleado_eliminado": empleado_eliminado["nombre"],
+            }
+    raise HTTPException(
+         status_code=status.HTTP_404_NOT_FOUND,
+         detail=f"No se puede eliminar. Empleado con ID {empleado_id} no fue encontrado"
+     )
