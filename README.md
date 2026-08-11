@@ -167,3 +167,28 @@ _Proceso de aprendizaje guiado con auditorías de código diarias para asegurar 
 
 ---
 _Proceso de aprendizaje guiado con auditorías de código diarias para asegurar la calidad del software._
+
+# 🚀 Día 39: Arquitectura Modular con `APIRouter` y Separación de Capas
+
+En esta jornada refactorizamos la API monolítica de gestión de empleados hacia una **arquitectura modular de producción**, aplicando el principio de **Separación de Responsabilidades** (*Separation of Concerns*).
+
+---
+
+## 🏗️ Estructura del Proyecto
+
+Organizamos el código fuente dentro del paquete principal `app/`:
+
+```text
+python-mes-2/
+│
+├── app/
+│   ├── __init__.py         # Indica que 'app' es un paquete de Python
+│   ├── database.py         # Capa de Datos (Persistencia simulada)
+│   ├── schemas.py          # Capa de DTOs (Contratos Pydantic v2)
+│   ├── main.py             # Orquestador y punto de entrada de FastAPI
+│   └── routers/
+│       ├── __init__.py     # Indica que 'routers' es un subpaquete
+│       └── empleados.py    # Definición de rutas del recurso /empleados
+│
+├── README.md
+└── .gitignore
