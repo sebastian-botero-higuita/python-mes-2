@@ -168,7 +168,7 @@ _Proceso de aprendizaje guiado con auditorías de código diarias para asegurar 
 ---
 _Proceso de aprendizaje guiado con auditorías de código diarias para asegurar la calidad del software._
 
-# 🚀 Día 39: Arquitectura Modular con `APIRouter` y Separación de Capas
+## 🚀 Día 39: Arquitectura Modular con `APIRouter` y Separación de Capas
 
 En esta jornada refactorizamos la API monolítica de gestión de empleados hacia una **arquitectura modular de producción**, aplicando el principio de **Separación de Responsabilidades** (*Separation of Concerns*).
 
@@ -192,3 +192,86 @@ python-mes-2/
 │
 ├── README.md
 └── .gitignore
+```
+
+---
+
+Sí, copias exactamente esa sección, pero ten cuidado con los saltos de línea y las comillas de los bloques de código para que no se te vuelva a desconfigurar el formato.
+
+Copia y pega este bloque **tal cual** justo debajo de la línea divisoria (`---`) con la que finaliza el Día 39:
+
+```markdown
+## 🧪 Día 40: Testing Automático de API Modular con `Pytest` y `TestClient`
+
+En esta jornada implementamos un **suite de pruebas automatizadas** para certificar la calidad y estabilidad de la API REST modular desarrollada en la carpeta `app/`.
+
+---
+
+## 📁 Estructura del Proyecto con Suite de Pruebas
+
+Organizamos las pruebas dentro del paquete dedicado `tests/`:
+
+```text
+python-mes-2/
+│
+├── app/
+│   ├── __init__.py
+│   ├── database.py
+│   ├── schemas.py
+│   ├── main.py
+│   └── routers/
+│       ├── __init__.py
+│       └── empleados.py
+│
+├── tests/                   # 👈 Suite de Pruebas Automatizadas
+│   ├── __init__.py          # Convierte 'tests' en un paquete Python
+│   ├── test_main.py         # Pruebas de endpoints base (/ y /salud)
+│   └── test_empleados.py    # Pruebas de lógica de negocio y DTOs para /empleados
+│
+├── README.md
+└── .gitignore
+
+```
+
+---
+
+## 🛠️ Herramientas e Integración
+
+* **`pytest`**: Framework de ejecución de pruebas unitarias y de integración.
+* **`httpx`**: Dependencia cliente HTTP para la simulación de peticiones asíncronas/síncronas en memoria.
+* **`fastapi.testclient.TestClient`**: Cliente especializado que ejecuta peticiones HTTP directamente sobre la app FastAPI sin levantar un servidor web.
+
+---
+
+## 🧪 Cobertura de Pruebas Implementada
+
+1. **Endpoints de Infraestructura (`tests/test_main.py`)**:
+* ✅ `GET /`: Verificación de respuesta HTTP 200 y validación exacta del contrato JSON.
+* ✅ `GET /salud`: Comprobación del estado activo del servidor.
+
+
+2. **Endpoints del Recurso Empleados (`tests/test_empleados.py`)**:
+* ✅ `GET /empleados`: Validación del listado general de entidades.
+* ✅ `GET /empleados/{id}` (Exitoso): Comprobación de recuperación de entidad por ID.
+* ✅ **Seguridad y DTOs**: Aserción crítica (`assert "salario" not in datos`) para garantizar que la respuesta no exponga información sensible.
+* ✅ `GET /empleados/{id}` (404): Manejo y verificación de excepciones controladas para recursos inexistentes.
+* ✅ `POST /empleados`: Validación de creación con código HTTP 201 Created y filtrado de salario en la respuesta.
+
+
+
+---
+
+## 🚀 Ejecución del Suite de Pruebas
+
+Para ejecutar la suite en la terminal con reporte detallado:
+
+```bash
+python3 -m pytest -v
+
+```
+
+**Resultado:** `6 passed` (100% de éxito en 1.43 segundos).
+
+```
+
+---
