@@ -196,11 +196,6 @@ python-mes-2/
 
 ---
 
-Sí, copias exactamente esa sección, pero ten cuidado con los saltos de línea y las comillas de los bloques de código para que no se te vuelva a desconfigurar el formato.
-
-Copia y pega este bloque **tal cual** justo debajo de la línea divisoria (`---`) con la que finaliza el Día 39:
-
-```markdown
 ## 🧪 Día 40: Testing Automático de API Modular con `Pytest` y `TestClient`
 
 En esta jornada implementamos un **suite de pruebas automatizadas** para certificar la calidad y estabilidad de la API REST modular desarrollada en la carpeta `app/`.
@@ -275,3 +270,39 @@ python3 -m pytest -v
 ```
 
 ---
+```
+# Día 41: Modelado Relacional, DDL y Configuración de PostgreSQL
+
+## 🎯 Objetivos del Día
+- Instalar y configurar PostgreSQL 18 localmente en macOS.
+- Comprender la diferencia entre DDL (Data Definition Language) y DML (Data Manipulation Language).
+- Crear bases de datos y tablas utilizando tipos de datos nativos y reglas de integridad (Constraints).
+- Implementar la sintaxis estándar moderna `GENERATED ALWAYS AS IDENTITY`.
+
+## 🛠️ Entorno de Trabajo
+- **Motor DB:** PostgreSQL 18.6
+- **Gestor Local:** Postgres.app
+- **CLI:** `psql` desde la terminal integrada de VS Code.
+
+## 📝 Sentencias DDL Ejecutadas
+
+### 1. Creación de la Base de Datos
+```sql
+CREATE DATABASE curso_db;
+
+CREATE TABLE usuarios (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    activo BOOLEAN DEFAULT TRUE,
+    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+🔍 Reglas de Integridad Aplicadas
+PRIMARY KEY / IDENTITY: Garantiza unicidad de ID autoincremental gestionado de forma estricta por el motor.
+
+NOT NULL: Valida campos obligatorios (nombre, email).
+
+UNIQUE: Impide la duplicidad de correos electrónicos a nivel de base de datos.
+
+DEFAULT: Automatiza valores por defecto para activo (TRUE) y marca de tiempo (CURRENT_TIMESTAMP).
