@@ -306,3 +306,37 @@ NOT NULL: Valida campos obligatorios (nombre, email).
 UNIQUE: Impide la duplicidad de correos electrónicos a nivel de base de datos.
 
 DEFAULT: Automatiza valores por defecto para activo (TRUE) y marca de tiempo (CURRENT_TIMESTAMP).
+
+---
+```
+# Día 42: Manipulación de Datos (DML) y Consultas en SQL
+
+## 🎯 Objetivos del Día
+- Dominar las sentencias DML (`INSERT`, `SELECT`, `UPDATE`, `DELETE`).
+- Probar reglas de integridad ante errores de duplicidad (`UNIQUE constraint`).
+- Aplicar filtros de búsqueda con `WHERE` e `ILIKE`.
+- Ejecutar actualizaciones y borrados seguros condicionados por `PRIMARY KEY`.
+
+## 🛠️ Comandos Ejecutados
+
+### Inserción Múltiple (Batch Insert)
+```sql
+INSERT INTO usuarios (nombre, email) 
+VALUES 
+    ('Laura Gómez', 'laura@example.com'),
+    ('Carlos Ruiz', 'carlos@example.com'),
+    ('Ana Martínez', 'ana@example.com');
+
+    Consultas con Filtros
+SQL
+-- Filtro exacto
+SELECT * FROM usuarios WHERE email = 'sebastian@example.com';
+
+-- Búsqueda por coincidencia parcial (Case Insensitive)
+SELECT * FROM usuarios WHERE nombre ILIKE '%botero%';
+Actualización y Borrado Controlado
+SQL
+UPDATE usuarios SET email = 'laura.gomez@empresa.com' WHERE id = 2;
+DELETE FROM usuarios WHERE id = 4;
+
+---
