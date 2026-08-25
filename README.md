@@ -340,3 +340,114 @@ UPDATE usuarios SET email = 'laura.gomez@empresa.com' WHERE id = 2;
 DELETE FROM usuarios WHERE id = 4;
 
 ---
+```
+# Día 43: Funciones de Agregación y Agrupaciones en SQL
+
+## 🎯 Objetivos del Día
+- Dominar funciones de agregación (`COUNT`, `SUM`, `AVG`, `MIN`, `MAX`).
+- Agrupar datos categóricos utilizando la cláusula `GROUP BY`.
+- Entender y aplicar la diferencia entre los filtros `WHERE` y `HAVING`.
+- Renombrar resultados de consultas utilizando alias (`AS`).
+
+## 🛠️ Consultas Ejecutadas
+
+### 1. Conteo General y con Condición
+```sql
+-- Total de registros
+SELECT COUNT(*) AS total_usuarios FROM usuarios;
+
+-- Registros filtrados antes de contar
+SELECT COUNT(*) AS usuarios_activos FROM usuarios WHERE activo = true;
+
+-- Agrupación por estado activo/inactivo
+SELECT activo, COUNT(*) AS cantidad 
+FROM usuarios 
+GROUP BY activo;
+
+-- Filtro post-agrupación (solo grupos con más de 2 usuarios)
+SELECT activo, COUNT(*) AS cantidad 
+FROM usuarios 
+GROUP BY activo 
+HAVING COUNT(*) > 2;
+
+---
+```
+# Día 44: Claves Foráneas (FOREIGN KEY), Índices y Combinación de Tablas (JOINs)
+
+## 🎯 Objetivos del Día
+- Comprender la normalización de bases de datos para evitar la redundancia.
+- Crear relaciones entre tablas mediante `FOREIGN KEY` e integridad referencial (`ON DELETE CASCADE`).
+- Aplicar la buena práctica de indexar manualmente las Claves Foráneas para optimizar el rendimiento.
+- Analizar las diferencias prácticas entre `INNER JOIN` y `LEFT JOIN`.
+
+## 🛠️ Sentencias DDL y DML Ejecutadas
+
+### 1. Creación de Tabla Relacionada e Índice
+```sql
+CREATE TABLE pedidos (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    usuario_id INTEGER NOT NULL,
+    monto DECIMAL(10, 2) NOT NULL,
+    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
+);
+
+-- Optimización de rendimiento para JOINs
+CREATE INDEX idx_pedidos_usuario_id ON pedidos(usuario_id);
+
+2. Consultas de Combinación
+SQL
+-- INNER JOIN: Solo registros con coincidencias en ambas tablas
+SELECT usuarios.id AS usuario_id, usuarios.nombre, pedidos.id AS pedido_id, pedidos.monto 
+FROM usuarios
+INNER JOIN pedidos ON usuarios.id = pedidos.usuario_id;
+
+-- LEFT JOIN: Todos los usuarios, tengan o no pedidos asociados
+SELECT usuarios.nombre, pedidos.id AS pedido_id, pedidos.monto 
+FROM usuarios
+LEFT JOIN pedidos ON usuarios.id = pedidos.usuario_id;
+
+---
+```
+
+# Día 45: Transacciones (ACID) y Subconsultas en SQL
+
+## 🎯 Objetivos del Día
+- Aplicar el concepto de atomicidad mediante transacciones (`BEGIN`, `COMMIT`, `ROLLBACK`).
+- Comprobar la resiliencia y reversión de datos ante fallos operacionales.
+- Construir subconsultas escalares en cláusulas `WHERE` para cálculos comparativos.
+- Utilizar subconsultas con `IN` y `DISTINCT` para filtrado conjunto entre tablas.
+
+## 🛠️ Consultas Ejecutadas
+
+### 1. Transacciones Atómicas (COMMIT y ROLLBACK)
+```sql
+-- Transacción Exitosa
+BEGIN;
+INSERT INTO usuarios (nombre, email) 
+VALUES ('Carlos Andrés', 'carlos.andres@example.com');
+
+INSERT INTO pedidos (usuario_id, monto) 
+VALUES ((SELECT id FROM usuarios WHERE email = 'carlos.andres@example.com'), 350.00);
+COMMIT;
+
+-- Reversión de Seguridad
+BEGIN;
+INSERT INTO usuarios (nombre, email) 
+VALUES ('Usuario Prueba Rollback', 'rollback@example.com');
+ROLLBACK;
+
+2. Subconsultas Avanzadas
+SQL
+-- Subconsulta para filtrar por encima del promedio
+SELECT usuarios.nombre, pedidos.monto 
+FROM pedidos 
+JOIN usuarios ON usuarios.id = pedidos.usuario_id 
+WHERE pedidos.monto > (SELECT AVG(monto) FROM pedidos);
+
+-- Subconsulta para verificar existencia de registros asociados
+SELECT nombre, email 
+FROM usuarios 
+WHERE id IN (SELECT DISTINCT usuario_id FROM pedidos);
+
+---
